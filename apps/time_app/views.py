@@ -1,5 +1,9 @@
 from django.shortcuts import render, HttpResponse, redirect
-# the index function is called when root is visited
+from time import gmtime, strftime, localtime
+
 def index(request):
-  response = "test"
-  return HttpResponse(response)
+  context = {
+  "test": strftime("%b %d %Y", localtime()),
+  "test2": strftime("%H:%M %p", localtime())
+  }
+  return render(request,'time_app/index.html', context)
